@@ -1,0 +1,18 @@
+/* Styles menu elements */
+.Menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  z-index: 100;
+}
+
+/* Styles the start button on the menu */
+.start-button {
+  font-size: 36px;
+  border: none;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 60px;
+  padding: 40px 80px;
+  cursor: pointer;
+}
