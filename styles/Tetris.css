@@ -1,0 +1,4 @@
+/* Position game elements relative to Tetris container */
+.Tetris {
+  position: relative;
+}

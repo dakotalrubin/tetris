@@ -1,4 +1,4 @@
-/* Styles menu elements */
+/* Style menu elements */
 .Menu {
   display: flex;
   justify-content: center;
@@ -7,7 +7,7 @@
   z-index: 100;
 }
 
-/* Styles the start button on the menu */
+/* Style start button on the menu */
 .start-button {
   font-size: 36px;
   border: none;

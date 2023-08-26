@@ -1,16 +1,28 @@
+// Import components
 import Menu from "./Menu.js";
+import Tetris from "./Tetris.js";
+
+// Import custom hooks
+import { useGameOver } from "../hooks/useGameOver.js";
 
 export default function Game({ rows, columns }) {
-  // Print row and column info to console
-  function start_game(rows, columns) {
-    console.log("Game start!");
-    console.log(`Rows: ${rows}, Columns: ${columns}`);
+  // Initialize state variable and setters
+  const [gameOver, setGameOver, resetGameOver] = useGameOver();
+
+  // Reset gameOver state to false
+  function startGame() {
+    resetGameOver();
   }
 
-  // Return Menu component and pass start_game() method
+  // Return Menu component and pass startGame() if gameOver state is true
+  // Otherwise return Tetris component to play the game
   return (
     <div className="Game">
-      <Menu onClick={() => start_game(rows, columns)} />
+      {gameOver ? (
+        <Menu onClick={() => startGame()} />
+      ) : (
+        <Tetris rows={rows} columns={columns} setGameOver={setGameOver} />
+      )}
     </div>
   );
 }
