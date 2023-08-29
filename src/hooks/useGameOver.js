@@ -1,4 +1,3 @@
-// Import hooks
 import { useCallback, useState } from "react";
 
 // Custom useGameOver hook

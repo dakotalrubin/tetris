@@ -1,8 +1,6 @@
-// Import components
 import Menu from "./Menu.js";
 import Tetris from "./Tetris.js";
 
-// Import custom hooks
 import { useGameOver } from "../hooks/useGameOver.js";
 
 export default function Game({ rows, columns }) {
@@ -14,7 +12,7 @@ export default function Game({ rows, columns }) {
     resetGameOver();
   }
 
-  // Return Menu component and pass startGame() if gameOver state is true
+  // Return Menu component and pass startGame() if gameOver == true
   // Otherwise return Tetris component to play the game
   return (
     <div className="Game">

@@ -1,7 +1,7 @@
 {
   "name": "tetris",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Tetris clone written using JavaScript and React",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
