@@ -1,0 +1,54 @@
+/* Style a cell on the game board */
+.BoardCell {
+  width: auto;
+  border-radius: 6px;
+  position: relative;
+}
+
+/* Style a tetromino */
+.Tetromino {
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+  border-right: 3px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Style a shiny tetromino */
+.Tetromino .Shine {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: -2px;
+  left: -2px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 4px 4px;
+  z-index: 10;
+}
+
+/* Style a ghost tetromino */
+.Tetromino.Ghost .Shine {
+  opacity: 0;
+}
+
+/* Style the individual tetromino shapes */
+.Tetromino_i {
+  background-color: rgba(80, 227, 230, 1);
+}
+.Tetromino_j {
+  background-color: rgba(36, 95, 223, 1);
+}
+.Tetromino_l {
+  background-color: rgba(223, 173, 36, 1);
+}
+.Tetromino_o {
+  background-color: rgba(223, 217, 36, 1);
+}
+.Tetromino_s {
+  background-color: rgba(48, 211, 56, 1);
+}
+.Tetromino_t {
+  background-color: rgba(132, 61, 198, 1);
+}
+.Tetromino_z {
+  background-color: rgba(240, 80, 195, 1);
+}
