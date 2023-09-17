@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 
 // Custom useGameOver hook
 export const useGameOver = () => {
-  // Initialize state variable
+  // Initialize state variable and setter
   const [gameOver, setGameOver] = useState(true);
 
   // Call useState() setter to declare custom setter

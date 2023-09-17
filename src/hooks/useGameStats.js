@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-// Build game stats
+// Build game stats info
 const buildGameStats = () => ({
   level: 1,
   linesCompleted: 0,

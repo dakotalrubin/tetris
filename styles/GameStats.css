@@ -1,3 +1,4 @@
+/* Style all game stats displayed on-screen */
 .GameStats {
   position: absolute;
   width: 22vw;
@@ -5,18 +6,21 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* Style the left side of the game stats display */
 .GameStats_left {
   right: 0;
   top: 22vh;
   text-align: left;
 }
 
+/* Style the right side of the game stats display */
 .GameStats_right {
   right: 0;
   bottom: 0;
   text-align: left;
 }
 
+/* Style all values displayed in the game stats */
 .GameStats .Value {
   font-size: 2.8rem;
   margin-bottom: 0.5em;
