@@ -10,9 +10,15 @@ import { usePlayer } from "../hooks/usePlayer.js";
 
 export default function Tetris({ rows, columns, setGameOver }) {
   // Initialize state variables and setters
-  const [board, setBoard] = useBoard({ rows, columns });
   const [gameStats, addLinesCleared] = useGameStats();
   const [player, setPlayer, resetPlayer] = usePlayer();
+  const [board, setBoard] = useBoard({
+    rows,
+    columns,
+    player,
+    resetPlayer,
+    addLinesCleared
+  });
 
   // Return Board component and pass size info (rows and columns)
   // Also return GameStats component showing info during gameplay
