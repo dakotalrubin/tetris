@@ -1,0 +1,5 @@
+/* Style GameController input element */
+.GameController {
+  position: absolute;
+  top: -100em;
+}
