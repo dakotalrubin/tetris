@@ -1,6 +1,7 @@
 import "../../styles/GameController.css";
 
 import { Action, actionForKey } from "../utils/Input.js";
+import { playerController } from "../utils/PlayerController.js";
 
 const GameController = ({
   board,
@@ -9,19 +10,34 @@ const GameController = ({
   setGameOver,
   setPlayer
 }) => {
+  // Handle when the player presses a key
   const onKeyDown = ({ code }) => {
     // Capture player action
     const action = actionForKey(code);
 
-    // Quit the game if player presses the "Q" key
+    handleInput({ action });
+  };
+
+  // Handle when the player releases a key
+  const onKeyUp = ({ code }) => {
+    // Capture player action
+    const action = actionForKey(code);
+
+    // Quit the game if the player presses the "Q" key
     if (action === Action.Quit) {
       setGameOver(true);
     }
   };
 
-  // Print an unpressed key to the console
-  const onKeyUp = ({ code }) => {
-    console.log(`onKeyUp: ${code}`);
+  // GameController takes an input action and updates game
+  const handleInput = ({ action }) => {
+    playerController({
+      action,
+      board,
+      player,
+      setPlayer,
+      setGameOver
+    });
   };
 
   // Capture player input using a text input element
