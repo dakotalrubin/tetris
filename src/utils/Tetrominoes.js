@@ -92,3 +92,18 @@ export const randomTetromino = () => {
   const key = keys[index];
   return TETROMINOES[key];
 };
+
+// Rotate the current game piece
+export const rotate = ({ piece, direction }) => {
+  // Transpose rows and columns
+  const newPiece = piece.map((_, index) =>
+    piece.map((column) => column[index])
+  );
+
+  // Reverse rows to get a rotated matrix
+  if (direction > 0) {
+    return newPiece.map((row) => row.reverse());
+  }
+
+  return newPiece.reverse();
+};
