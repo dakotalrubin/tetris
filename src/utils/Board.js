@@ -35,6 +35,12 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     shape: tetromino.shape
   });
 
+  // Reset the player's game piece at the top of the board
+  // after a collision or when fast dropping
+  if (player.collided || player.isFastDropping) {
+    resetPlayer();
+  }
+
   // Return the updated game board
   return {
     rows,

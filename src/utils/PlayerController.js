@@ -33,6 +33,86 @@ const attemptRotation = ({ board, player, setPlayer }) => {
   }
 };
 
+export const movePlayer = ({ change, position, shape, board }) => {
+  // Calculate the player's desired next position
+  const attemptedNextPosition = {
+    row: position.row + change.row,
+    column: position.column + change.column
+  };
+
+  // Check whether the player's next attempted position involves collision
+  const collided = hasCollision({
+    board,
+    position: attemptedNextPosition,
+    shape
+  });
+
+  // Check whether the player's next attempted position is within board boundaries
+  const isInBoard = isWithinBoard({
+    board,
+    position: attemptedNextPosition,
+    shape
+  });
+
+  // Create variable to block movement under given circumstances
+  const preventMove = !isInBoard || (isInBoard && collided);
+
+  // Update player's position based on whether the attempted move is successful
+  const nextPosition = preventMove ? position : attemptedNextPosition;
+
+  // Check whether the active game piece is moving down the board
+  const isMovingDown = change.row > 0;
+
+  // Check whether the active game piece has come to rest
+  const hasStopped = isMovingDown && (collided || !isInBoard);
+
+  // Return player collision status and updated position
+  return { collided: hasStopped, nextPosition };
+};
+
+const attemptMovement = ({ board, player, setPlayer, action, setGameOver }) => {
+  // Track the attempted change in position
+  // Default assumes no change in position
+  const change = { row: 0, column: 0 };
+
+  // Track whether the player want to fast drop a tetromino
+  // Default movement is slow dropping
+  let isFastDropping = false;
+
+  // Handle different player movement actions
+  if (action === Action.FastDrop) {
+    isFastDropping = true;
+  } else if (action === Action.SlowDrop) {
+    change.row += 1;
+  } else if (action === Action.Left) {
+    change.column -= 1;
+  } else if (action === Action.Right) {
+    change.column += 1;
+  }
+
+  // Return whether collision occurred and what the next position should be
+  const { collided, nextPosition } = movePlayer({
+    change,
+    position: player.position,
+    shape: player.tetromino.shape,
+    board
+  });
+
+  // Check for collision on the top row for a game over
+  const isGameOver = collided && player.position.row === 0;
+  if (isGameOver) {
+    setGameOver(isGameOver);
+  }
+
+  // Update various player attributes
+  setPlayer({
+    ...player,
+    collided,
+    isFastDropping,
+    position: nextPosition
+  });
+};
+
 // Handle game updates when player performs an action
 export const playerController = ({
   action,
@@ -46,8 +126,10 @@ export const playerController = ({
     return;
   }
 
-  // Try to rotate the game piece if the player action is rotation
+  // Try to rotate or translate the game piece
   if (action === Action.Rotate) {
     attemptRotation({ board, player, setPlayer });
+  } else {
+    attemptMovement({ board, player, setPlayer, action, setGameOver });
   }
 };
