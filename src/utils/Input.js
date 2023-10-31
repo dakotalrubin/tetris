@@ -20,4 +20,8 @@ export const Key = {
   Space: Action.FastDrop
 };
 
+// Is the given action a slow drop or a fast drop?
+export const actionIsDrop = (action) =>
+  [Action.SlowDrop, Action.FastDrop].includes(action);
+
 export const actionForKey = (keyCode) => Key[keyCode];

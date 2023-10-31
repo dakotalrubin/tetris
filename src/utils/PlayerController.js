@@ -82,6 +82,7 @@ const attemptMovement = ({ board, player, setPlayer, action, setGameOver }) => {
   // Handle different player movement actions
   if (action === Action.FastDrop) {
     isFastDropping = true;
+    change.row += 1;
   } else if (action === Action.SlowDrop) {
     change.row += 1;
   } else if (action === Action.Left) {
