@@ -1,5 +1,6 @@
 import { defaultCell } from "./Cell.js";
 import { transferToBoard } from "./Tetrominoes.js";
+import { movePlayer } from "./PlayerController.js";
 
 // Build game board using size info (rows and columns)
 export const buildBoard = ({ rows, columns }) => {
@@ -14,6 +15,38 @@ export const buildBoard = ({ rows, columns }) => {
   };
 };
 
+// Locate final tetromino drop position by looking ahead through all rows
+const findDropPosition = ({ board, position, shape }) => {
+  // Initial row position
+  let row = 0;
+
+  // Total number of board rows + 1 minus current row position
+  let max = board.size.rows - position.row + 1;
+
+  // Keep trying to place the tetromino and check for collision
+  for (let i = 0; i < max; i++) {
+    // Looking ahead a certain number of rows; the column stays constant
+    const change = { row: i, column: 0 };
+
+    // Store the result from attempting to move the current tetromino
+    const result = movePlayer({ change, position, shape, board });
+
+    // Check for collision
+    const { collided } = result;
+
+    // Exit loop if collision occurs
+    if (collided) {
+      break;
+    }
+
+    // Increment row if no collision occurs
+    row = position.row + i;
+  }
+
+  // Return tetromino position with the same column, but update the row
+  return { ...position, row };
+};
+
 // Update game board using player info
 export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   // Extract a specific tetromino and its position from player info
@@ -26,17 +59,42 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     row.map((cell) => (cell.occupied ? cell : { ...defaultCell }))
   );
 
-  // Update the rows in the game board to accomodate this tetromino
-  rows = transferToBoard({
-    className: tetromino.className,
-    isOccupied: player.collided,
+  // Store final tetromino drop position
+  const dropPosition = findDropPosition({
+    board,
     position,
+    shape: tetromino.shape
+  });
+
+  // Place ghost tetromino where fast-drop collision would occur
+  const className = `${tetromino.className} ${
+    player.isFastDropping ? "" : "Ghost"
+  }`;
+
+  // Update the rows in the game board to show this ghost tetromino
+  rows = transferToBoard({
+    className,
+    isOccupied: player.isFastDropping,
+    position: dropPosition,
     rows,
     shape: tetromino.shape
   });
 
+  // Update the rows in the game board to show this tetromino if the player
+  // isn't fast-dropping
+  if (!player.isFastDropping) {
+    // If collision occurs, mark the board cells as collided
+    rows = transferToBoard({
+      className: tetromino.className,
+      isOccupied: player.collided,
+      position,
+      rows,
+      shape: tetromino.shape
+    });
+  }
+
   // Reset the player's game piece at the top of the board
-  // after a collision or when fast dropping
+  // after a collision or when fast-dropping
   if (player.collided || player.isFastDropping) {
     resetPlayer();
   }

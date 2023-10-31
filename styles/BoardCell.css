@@ -26,6 +26,12 @@
 }
 
 /* Style a ghost tetromino */
+.Tetromino.Ghost {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Style a ghost tetromino by removing the shiny part */
 .Tetromino.Ghost .Shine {
   opacity: 0;
 }
