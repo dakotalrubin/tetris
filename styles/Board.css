@@ -2,11 +2,11 @@
 .Board {
   display: grid;
   grid-gap: 2px;
-  width: 40vw;
-  height: 86vh;
-  background-color: rgb(32, 0, 64);
+  width: 330px;
+  height: 640px;
+  background-color: #4c2a85;
   margin: 2em auto;
-  border: 10px solid rgb(32, 0, 64);
+  border: 10px solid #4c2a85;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
 }

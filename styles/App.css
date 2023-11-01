@@ -7,10 +7,10 @@
 
 /* Style app elements */
 .App {
+  color: #ffffff;
+  background-color: #02c39a;
   font-family: sans-serif;
   text-align: center;
-  color: #ffffff;
-  background-color: #551a8b;
   height: 100vh;
   padding: 20px;
 }

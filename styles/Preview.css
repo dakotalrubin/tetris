@@ -1,9 +1,9 @@
 /* Style a tetromino preview */
 .Preview {
   position: absolute;
-  top: 0;
-  left: 75vw;
-  background-color: rgba(0, 0, 0, 0.1);
+  right: 392px;
+  margin-top: 40px;
+  background-color: rgba(0, 0, 0, 0.15);
   border: 8px solid rgba(0, 0, 0, 0);
   border-radius: 10px;
 }
@@ -11,9 +11,9 @@
 /* Style the tetromino preview window */
 .Preview_Board {
   display: grid;
-  grid-gap: 2px;
+  grid-gap: 1px;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(4, 1fr);
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
 }

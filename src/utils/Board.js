@@ -93,6 +93,35 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     });
   }
 
+  // Create an empty row ready for insertion at the top of the game board
+  const emptyRow = rows[0].map((_) => ({ ...defaultCell }));
+
+  // After placing game pieces, check for cleared lines
+  let linesCleared = 0;
+
+  // Build a new set of rows, deleting any cleared lines and inserting
+  // an equal number of empty lines at the top of the game board
+  rows = rows.reduce((accumulator, row) => {
+    // Is every column in the given row occupied?
+    if (row.every((column) => column.occupied)) {
+      // This row is a cleared line
+      linesCleared += 1;
+
+      // Add an empty row to the beginning of the new set of rows
+      accumulator.unshift([...emptyRow]);
+    } else {
+      // Push the current (uncleared) row to the new set of rows
+      accumulator.push(row);
+    }
+
+    return accumulator;
+  }, []); // Start with an empty array (the accumulator)
+
+  // Update GameStats with new number of lines cleared
+  if (linesCleared > 0) {
+    addLinesCleared(linesCleared);
+  }
+
   // Reset the player's game piece at the top of the board
   // after a collision or when fast-dropping
   if (player.collided || player.isFastDropping) {

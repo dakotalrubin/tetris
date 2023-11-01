@@ -16,7 +16,7 @@ const Preview = ({ tetromino, index }) => {
 
   // Add a style to increase the top of a tetromino preview
   // so that each preview doesn't overlap
-  const style = { top: `${index * 12}%` };
+  const style = { top: `${index * 18}%` };
 
   // Transfer a tetromino from the preview board to the game board
   board.rows = transferToBoard({

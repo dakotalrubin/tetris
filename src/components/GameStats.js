@@ -12,11 +12,11 @@ const GameStats = ({ gameStats }) => {
   // Display game stats on-screen
   return (
     <ul className="GameStats GameStats_right">
-      <li>Level</li>
+      <li>Level:</li>
       <li className="Value">{level}</li>
-      <li>Lines to Next Level</li>
+      <li>Lines to Next Level:</li>
       <li className="Value">{linesToNextLevel}</li>
-      <li>Points</li>
+      <li>Points:</li>
       <li className="Value">{points}</li>
     </ul>
   );

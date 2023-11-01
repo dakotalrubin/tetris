@@ -8,9 +8,21 @@ const Previews = ({ tetrominoes }) => {
     .slice(1 - tetrominoes.length)
     .reverse();
 
+  // Style the tetronimo preview text
+  const nextStyles = {
+    top: "0%",
+    marginTop: "5px",
+    backgroundColor: "rgba(0, 0, 0, 0)",
+    color: "rgba(0, 0, 0, 0.9)",
+    right: "454px"
+  };
+
   // Return a Preview component for each tetromino
   return (
     <>
+      <div className="Preview" style={nextStyles}>
+        Next:
+      </div>
       {previewTetrominoes.map((tetromino, index) => (
         <Preview tetromino={tetromino} index={index} key={index} />
       ))}

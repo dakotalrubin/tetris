@@ -1,28 +1,28 @@
 /* Style all game stats displayed on-screen */
 .GameStats {
   position: absolute;
-  width: 22vw;
+  width: 500px;
   list-style-type: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.9);
 }
 
 /* Style the left side of the game stats display */
 .GameStats_left {
-  right: 0;
-  top: 22vh;
+  right: 0px;
+  top: 0px;
   text-align: left;
 }
 
 /* Style the right side of the game stats display */
 .GameStats_right {
-  right: 0;
-  bottom: 0;
+  right: 0px;
+  bottom: 0px;
   text-align: left;
 }
 
-/* Style all values displayed in the game stats */
+/* Style all values in the game stats display */
 .GameStats .Value {
   font-size: 2.8rem;
-  margin-bottom: 0.5em;
-  color: rgba(255, 255, 255, 1);
+  margin-bottom: 0.2em;
+  color: rgba(0, 0, 0, 0.9);
 }
