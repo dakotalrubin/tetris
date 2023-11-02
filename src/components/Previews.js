@@ -8,7 +8,7 @@ const Previews = ({ tetrominoes }) => {
     .slice(1 - tetrominoes.length)
     .reverse();
 
-  // Style the tetronimo preview text
+  // Style the tetromino preview text
   const nextStyles = {
     top: "0%",
     marginTop: "5px",

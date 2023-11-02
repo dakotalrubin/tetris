@@ -13,10 +13,6 @@ export const useInterval = (callback, delay) => {
   useEffect(() => {
     function tick() {
       savedCallback.current();
-
-      // Maintain focus when clicking around the web page
-      const gameControllerInput = document.querySelector(".GameController");
-      gameControllerInput.focus();
     }
 
     if (delay !== null) {

@@ -14,7 +14,7 @@
   border: 1px solid black;
 }
 
-/* Style a tetromino with a shiny part */
+/* Style a tetromino's shiny texture */
 .Tetromino .Shine {
   position: absolute;
   width: 7px;
