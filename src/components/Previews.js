@@ -14,7 +14,7 @@ const Previews = ({ tetrominoes }) => {
     marginTop: "5px",
     backgroundColor: "rgba(0, 0, 0, 0)",
     color: "rgba(0, 0, 0, 0.9)",
-    right: "454px"
+    right: "453px"
   };
 
   // Return a Preview component for each tetromino

@@ -11,7 +11,7 @@ export const useDropTime = ({ gameStats }) => {
   const [dropTime, setDropTime] = useState(defaultDropTime);
   const [previousDropTime, setPreviousDropTime] = useState();
 
-  // Unpause the game by restarting the tetromino auto-drop timer
+  // Unpause the game by starting the tetromino auto-drop timer
   const resumeDropTime = useCallback(() => {
     // Return if the game hasn't been paused
     if (!previousDropTime) {

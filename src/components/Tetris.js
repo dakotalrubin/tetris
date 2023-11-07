@@ -1,5 +1,6 @@
 import "../../styles/Tetris.css";
 
+import Controls from "./Controls.js";
 import Board from "./Board.js";
 import GameStats from "./GameStats.js";
 import Previews from "./Previews.js";
@@ -21,12 +22,14 @@ export default function Tetris({ rows, columns, setGameOver }) {
     addLinesCleared
   });
 
-  // Return Board component and pass size info (rows and columns)
-  // Also return GameStats component showing info during gameplay
+  // Return a Controls component showing relevant inputs for the player
+  // Also return Board component and pass size info (rows and columns)
+  // The GameStats component shows info during gameplay
   // and a Previews component that shows a sneak-peek at upcoming tetrominoes
   // The GameController component drives all player interaction with the game
   return (
     <div className="Tetris">
+      <Controls />
       <Board board={board} />
       <GameStats gameStats={gameStats} />
       <Previews tetrominoes={player.tetrominoes} />

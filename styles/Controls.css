@@ -1,0 +1,20 @@
+/* Style all controls displayed on-screen */
+.Controls {
+  position: absolute;
+  top: 40px;
+  left: 371px;
+  text-align: left;
+  list-style-type: none;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 8px solid rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+/* Style the controls text box */
+.Controls-Text {
+  left: 363px;
+  top: 5px;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0);
+}
