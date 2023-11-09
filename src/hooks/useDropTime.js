@@ -36,18 +36,18 @@ export const useDropTime = ({ gameStats }) => {
     setDropTime(null);
   }, [dropTime, setPreviousDropTime]);
 
-  // Call useEffect every time the game's level or auto-drop time changes
-  useEffect(() => {
+  // Change drop time whenever the game's level changes
+  const updateDropTime = useCallback(() => {
     // Update game speed for every level after the first
     const speed = speedIncrement * (gameStats.level - 1);
 
-    // Update auto-drop time using calculated speed and minimum auto-drop time
+    // Set new auto-drop time using calculated speed and minimum auto-drop time
     const newDropTime = Math.max(defaultDropTime - speed, minimumDropTime);
 
-    // Implement new auto-drop time whenever the game's level gets updated
+    // Implement new auto-drop time whenever the game's level updates
     setDropTime(newDropTime);
-  }, [gameStats.level, setDropTime]);
+  }, [gameStats.level]);
 
   // Return state variable and setters
-  return [dropTime, pauseDropTime, resumeDropTime];
+  return [dropTime, pauseDropTime, resumeDropTime, updateDropTime];
 };

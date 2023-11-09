@@ -22,10 +22,10 @@ export default function Tetris({ rows, columns, setGameOver }) {
     addLinesCleared
   });
 
-  // Return a Controls component showing relevant inputs for the player
+  // Return a Controls component showing relevant inputs to the player
   // Also return Board component and pass size info (rows and columns)
-  // The GameStats component shows info during gameplay
-  // and a Previews component that shows a sneak-peek at upcoming tetrominoes
+  // The GameStats component shows info during gameplay and
+  // a Previews component shows a sneak-peek of upcoming tetrominoes
   // The GameController component drives all player interaction with the game
   return (
     <div className="Tetris">

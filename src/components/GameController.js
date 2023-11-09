@@ -13,13 +13,17 @@ const GameController = ({
   setGameOver,
   setPlayer
 }) => {
-  // Change the tetromino dropTime depending on the game's level in gameStats
-  const [dropTime, pauseDropTime, resumeDropTime] = useDropTime({
-    gameStats
-  });
+  // Call useDropTime hook to use state variable and setter functions
+  const [dropTime, pauseDropTime, resumeDropTime, updateDropTime] = useDropTime(
+    {
+      gameStats
+    }
+  );
 
+  // Change the tetromino drop time depending on the game's level in gameStats
   // Perform a "slow drop" action at every "dropTime" unit of time
   useInterval(() => {
+    updateDropTime();
     handleInput({ action: Action.SlowDrop });
   }, dropTime);
 

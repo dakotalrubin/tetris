@@ -1,7 +1,7 @@
 import "../../styles/Controls.css";
 
+// Display game controls on-screen
 export default function Controls() {
-  // Display game controls on-screen
   return (
     <div>
       <div className="Controls Controls-Text">Controls:</div>
@@ -11,7 +11,7 @@ export default function Controls() {
         <br></br>
         <li>↑ &nbsp; &#8202; Rotate</li>
         <li>↓ &nbsp; &#8202; Slow Drop</li>
-        <li>␣ &#8202; &#8202; Fast Drop</li>
+        <li>_ &nbsp; &#8202; Fast Drop</li>
         <br></br>
         <li>P &nbsp; &#8202; Pause</li>
         <li>Q &#8201; &#8202; Quit</li>

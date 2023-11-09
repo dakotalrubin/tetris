@@ -2,7 +2,7 @@
 .Controls {
   position: absolute;
   top: 40px;
-  left: 371px;
+  left: 372px;
   text-align: left;
   list-style-type: none;
   color: rgba(0, 0, 0, 0.9);
@@ -13,7 +13,7 @@
 
 /* Style the controls text box */
 .Controls-Text {
-  left: 363px;
+  left: 364px;
   top: 5px;
   color: rgba(0, 0, 0, 0.9);
   background-color: rgba(0, 0, 0, 0);
