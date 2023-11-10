@@ -1,7 +1,7 @@
 /* Style a tetromino preview */
 .Preview {
   position: absolute;
-  right: 392px;
+  left: 63.55vw;
   margin-top: 40px;
   background-color: rgba(0, 0, 0, 0.15);
   border: 8px solid rgba(0, 0, 0, 0);

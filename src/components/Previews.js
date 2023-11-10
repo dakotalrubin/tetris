@@ -12,9 +12,10 @@ const Previews = ({ tetrominoes }) => {
   const nextStyles = {
     top: "0%",
     marginTop: "5px",
+    borderLeft: "0px",
     backgroundColor: "rgba(0, 0, 0, 0)",
     color: "rgba(0, 0, 0, 0.9)",
-    right: "453px"
+    left: "63.48vw"
   };
 
   // Return a Preview component for each tetromino

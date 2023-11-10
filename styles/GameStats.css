@@ -1,7 +1,6 @@
 /* Style all game stats displayed on-screen */
 .GameStats {
   position: absolute;
-  width: 500px;
   list-style-type: none;
   color: rgba(0, 0, 0, 0.9);
 }
@@ -15,7 +14,7 @@
 
 /* Style the right side of the game stats display */
 .GameStats_right {
-  right: 0px;
+  left: 63.5vw;
   bottom: 0px;
   text-align: left;
 }

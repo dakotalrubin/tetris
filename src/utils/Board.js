@@ -20,7 +20,7 @@ const findDropPosition = ({ board, position, shape }) => {
   // Initial row position
   let row = 0;
 
-  // Total number of board rows + 1 minus current row position
+  // Total number of board rows minus current row position + 1
   let max = board.size.rows - position.row + 1;
 
   // Keep trying to place the tetromino and check for collision
@@ -163,7 +163,7 @@ export const isWithinBoard = ({ board, position, shape }) => {
   return true;
 };
 
-// Check whether a game piece can collide with other game objects
+// Check whether a game piece will collide with other game objects
 export const hasCollision = ({ board, position, shape }) => {
   // Traverse through each row of the shape
   for (let y = 0; y < shape.length; y++) {

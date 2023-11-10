@@ -1,10 +1,18 @@
 import "../../styles/GameController.css";
 
+import { useEffect } from "react";
+
 import { Action, actionForKey, actionIsDrop } from "../utils/Input.js";
 import { playerController } from "../utils/PlayerController.js";
+import { hasCollision } from "../utils/Board.js";
 
 import { useInterval } from "../hooks/useInterval.js";
 import { useDropTime } from "../hooks/useDropTime.js";
+
+// Delay an event by the given amount of time in ms
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const GameController = ({
   board,
@@ -19,6 +27,28 @@ const GameController = ({
       gameStats
     }
   );
+
+  // Pause the game for the given amount of time so the player gets
+  // visual feedback for their game over
+  async function delayedGameOver(ms) {
+    await sleep(ms);
+    setGameOver(true);
+  }
+
+  // Check if a newly-spawned tetromino instantly collides with anything
+  useEffect(() => {
+    let collided = hasCollision({
+      board,
+      position: player.position,
+      shape: player.tetromino.shape
+    });
+
+    // Pause the game for a moment, then give the player a game over
+    if (collided) {
+      document.querySelector(".GameController").blur();
+      delayedGameOver(800);
+    }
+  });
 
   // Change the tetromino drop time depending on the game's level in gameStats
   // Perform a "slow drop" action at every "dropTime" unit of time
