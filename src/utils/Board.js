@@ -20,7 +20,7 @@ const findDropPosition = ({ board, position, shape }) => {
   // Initial row position
   let row = 0;
 
-  // Total number of board rows minus current row position + 1
+  // Total number of board rows able to be traversed
   let max = board.size.rows - position.row + 1;
 
   // Keep trying to place the tetromino and check for collision

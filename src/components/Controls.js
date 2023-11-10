@@ -11,7 +11,7 @@ export default function Controls() {
         <br></br>
         <li>↑ &nbsp; &#8202; Rotate</li>
         <li>↓ &nbsp; &#8202; Slow Drop</li>
-        <li>_ &nbsp; &#8202; Fast Drop</li>
+        <li>__ &#8201; Fast Drop</li>
         <br></br>
         <li>P &nbsp; &#8202; Pause</li>
         <li>Q &#8201; &#8202; Quit</li>
