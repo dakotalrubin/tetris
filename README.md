@@ -6,7 +6,7 @@
 A Tetris clone written using JavaScript and React
 
 ## Running the Game
-Work-in-progress.  
+Click on the GitHub Pages link to play!  
   
 ## Controls
 The game's controls are displayed on the left side of the screen during gameplay. Move left and right with the left and right arrow keys. Rotate your Tetris block with the up arrow. The down arrow will drop your Tetris block down the screen one tile at a time.  
