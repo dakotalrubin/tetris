@@ -1,4 +1,4 @@
-import "../../styles/Controls.css";
+import "../styles/Controls.css";
 
 // Display game controls on-screen
 export default function Controls() {

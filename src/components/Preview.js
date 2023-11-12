@@ -1,4 +1,4 @@
-import "../../styles/Preview.css";
+import "../styles/Preview.css";
 
 import React from "react";
 

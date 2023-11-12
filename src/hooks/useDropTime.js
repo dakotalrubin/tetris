@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 // Set default values in ms for auto-drop time stats
 const defaultDropTime = 1000;

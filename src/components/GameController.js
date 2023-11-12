@@ -1,4 +1,4 @@
-import "../../styles/GameController.css";
+import "../styles/GameController.css";
 
 import { useEffect } from "react";
 

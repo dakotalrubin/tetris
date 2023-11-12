@@ -1,4 +1,4 @@
-import "../../styles/Board.css";
+import "../styles/Board.css";
 
 import BoardCell from "./BoardCell.js";
 

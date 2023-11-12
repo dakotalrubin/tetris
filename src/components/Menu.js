@@ -1,4 +1,4 @@
-import "../../styles/Menu.css";
+import "../styles/Menu.css";
 
 export default function Menu({ onClick }) {
   // Return start button

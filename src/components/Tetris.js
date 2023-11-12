@@ -1,4 +1,4 @@
-import "../../styles/Tetris.css";
+import "../styles/Tetris.css";
 
 import Controls from "./Controls.js";
 import Board from "./Board.js";

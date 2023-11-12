@@ -1,4 +1,4 @@
-import "../../styles/GameStats.css";
+import "../styles/GameStats.css";
 
 import React from "react";
 

@@ -1,4 +1,4 @@
-import "../../styles/BoardCell.css";
+import "../styles/BoardCell.css";
 
 // Give each cell a unique className and some visual flair
 export default function BoardCell({ cell }) {
