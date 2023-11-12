@@ -5,7 +5,7 @@ const buildGameStats = () => ({
   level: 1,
   linesCompleted: 0,
   linesPerLevel: 10,
-  points: 0
+  score: 0,
 });
 
 // Custom useGameStats hook
@@ -17,7 +17,7 @@ export const useGameStats = () => {
   const addLinesCleared = useCallback((lines) => {
     setGameStats((previous) => {
       // Create a basic scoring formula
-      const points = previous.points + lines * 100;
+      const score = previous.score + lines * 100;
 
       // Store constant lines per level
       const { linesPerLevel } = previous;
@@ -39,7 +39,7 @@ export const useGameStats = () => {
         level,
         linesCompleted,
         linesPerLevel,
-        points
+        score,
       };
     }, []);
   }, []);

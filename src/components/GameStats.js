@@ -4,7 +4,7 @@ import React from "react";
 
 const GameStats = ({ gameStats }) => {
   // Extract different attributes from gameStats
-  const { level, points, linesCompleted, linesPerLevel } = gameStats;
+  const { level, score, linesCompleted, linesPerLevel } = gameStats;
 
   // Calculate the number of lines remaining in the current level
   const linesToNextLevel = linesPerLevel - linesCompleted;
@@ -16,8 +16,8 @@ const GameStats = ({ gameStats }) => {
       <li className="Value">{level}</li>
       <li>Lines to Next Level:</li>
       <li className="Value">{linesToNextLevel}</li>
-      <li>Points:</li>
-      <li className="Value">{points}</li>
+      <li>Score:</li>
+      <li className="Value">{score}</li>
     </ul>
   );
 };

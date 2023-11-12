@@ -6,15 +6,17 @@ export default function Controls() {
     <div>
       <div className="Controls Controls-Text">Controls:</div>
       <ul className="Controls">
-        <li>← &nbsp; Move Left</li>
-        <li>→ &nbsp; Move Right</li>
+        <li>← &nbsp; &nbsp; Move Left</li>
+        <li>→ &nbsp; &nbsp; Move Right</li>
         <br></br>
-        <li>↑ &nbsp; &#8202; Rotate</li>
-        <li>↓ &nbsp; &#8202; Slow Drop</li>
-        <li>__ &#8201; Fast Drop</li>
+        <li>↑ &nbsp; &#8202; &nbsp; Rotate</li>
+        <li>↓ &nbsp; &#8202; &nbsp; Slow Drop</li>
+        <li>
+          <span style={{ fontSize: "10px" }}>SPACE</span> Fast Drop
+        </li>
         <br></br>
-        <li>P &nbsp; &#8202; Pause</li>
-        <li>Q &#8201; &#8202; Quit</li>
+        <li>P &nbsp; &nbsp; &#8202; Pause</li>
+        <li>Q &#8201; &nbsp; &#8202; Quit</li>
       </ul>
     </div>
   );
