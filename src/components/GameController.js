@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import ModalDialog from "./ModalDialog.js";
 
 import { Action, actionForKey, actionIsDrop } from "../utils/Input.js";
-import { playerController, movePlayer } from "../utils/PlayerController.js";
+import { playerController } from "../utils/PlayerController.js";
 import { hasCollision } from "../utils/Board.js";
 
 import { useInterval } from "../hooks/useInterval.js";

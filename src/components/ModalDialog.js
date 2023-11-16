@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-// ModalDialog component by Headless UI
+// ModalDialog component template by Headless UI
 const ModalDialog = ({ isOpen, setIsOpen, setGameOver, finalScore }) => {
   const closeDialog = () => {
     setIsOpen(false);
