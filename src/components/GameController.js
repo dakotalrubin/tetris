@@ -1,9 +1,11 @@
 import "../styles/GameController.css";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
+import ModalDialog from "./ModalDialog.js";
 
 import { Action, actionForKey, actionIsDrop } from "../utils/Input.js";
-import { playerController } from "../utils/PlayerController.js";
+import { playerController, movePlayer } from "../utils/PlayerController.js";
 import { hasCollision } from "../utils/Board.js";
 
 import { useInterval } from "../hooks/useInterval.js";
@@ -19,20 +21,26 @@ const GameController = ({
   gameStats,
   player,
   setGameOver,
-  setPlayer
+  setPlayer,
 }) => {
+  // Create variable to track whether ModalDialog box is displayed
+  const [isOpen, setIsOpen] = useState(false);
   // Call useDropTime hook to use state variable and setter functions
   const [dropTime, pauseDropTime, resumeDropTime, updateDropTime] = useDropTime(
     {
-      gameStats
-    }
+      gameStats,
+    },
   );
 
-  // Pause the game for the given amount of time so the player gets
-  // visual feedback for their game over
-  async function delayedGameOver(ms) {
-    await sleep(ms);
-    setGameOver(true);
+  // Pause the game and give the player a game over
+  async function delayedGameOver() {
+    // Take away player control and pause the game
+    document.querySelector(".GameController").blur();
+    pauseDropTime();
+    await sleep(800);
+
+    // Allow the rendering of a ModalDialog box for a game over
+    setIsOpen(true);
   }
 
   // Check if a newly-spawned tetromino instantly collides with anything
@@ -40,13 +48,12 @@ const GameController = ({
     let collided = hasCollision({
       board,
       position: player.position,
-      shape: player.tetromino.shape
+      shape: player.tetromino.shape,
     });
 
-    // Pause the game for a moment, then give the player a game over
+    // Pause the game for a moment, then open a ModalDialog box for a game over
     if (collided) {
-      document.querySelector(".GameController").blur();
-      delayedGameOver(800);
+      delayedGameOver();
     }
   });
 
@@ -99,19 +106,28 @@ const GameController = ({
       board,
       player,
       setPlayer,
-      setGameOver
+      setIsOpen,
     });
   };
 
   // Capture player input using a text input element
+  // Return a ModalDialog component in the event of a game over
   return (
-    <input
-      className="GameController"
-      type="text"
-      onKeyDown={onKeyDown}
-      onKeyUp={onKeyUp}
-      autoFocus
-    />
+    <div>
+      <input
+        className="GameController"
+        type="text"
+        onKeyDown={onKeyDown}
+        onKeyUp={onKeyUp}
+        autoFocus
+      />
+      <ModalDialog
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        setGameOver={setGameOver}
+        finalScore={gameStats.score}
+      />
+    </div>
   );
 };
 

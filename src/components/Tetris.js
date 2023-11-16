@@ -19,7 +19,7 @@ export default function Tetris({ rows, columns, setGameOver }) {
     columns,
     player,
     resetPlayer,
-    addLinesCleared
+    addLinesCleared,
   });
 
   // Return a Controls component showing relevant inputs to the player

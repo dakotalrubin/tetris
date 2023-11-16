@@ -7,7 +7,7 @@ const attemptRotation = ({ board, player, setPlayer }) => {
   // Transpose the rows and columns of the original game piece
   const shape = rotate({
     piece: player.tetromino.shape,
-    direction: 1
+    direction: 1,
   });
 
   // Track the position of the game piece
@@ -25,8 +25,8 @@ const attemptRotation = ({ board, player, setPlayer }) => {
       ...player,
       tetromino: {
         ...player.tetromino,
-        shape
-      }
+        shape,
+      },
     });
   } else {
     return false;
@@ -37,21 +37,21 @@ export const movePlayer = ({ change, position, shape, board }) => {
   // Calculate the player's desired next position
   const attemptedNextPosition = {
     row: position.row + change.row,
-    column: position.column + change.column
+    column: position.column + change.column,
   };
 
   // Check whether the player's next attempted position involves collision
   const collided = hasCollision({
     board,
     position: attemptedNextPosition,
-    shape
+    shape,
   });
 
   // Check whether the player's next attempted position is within board boundaries
   const isInBoard = isWithinBoard({
     board,
     position: attemptedNextPosition,
-    shape
+    shape,
   });
 
   // Create variable to block movement under given circumstances
@@ -70,7 +70,7 @@ export const movePlayer = ({ change, position, shape, board }) => {
   return { collided: hasStopped, nextPosition };
 };
 
-const attemptMovement = ({ board, player, setPlayer, action, setGameOver }) => {
+const attemptMovement = ({ board, player, setPlayer, action, setIsOpen }) => {
   // Track the attempted change in position
   // Default assumes no change in position
   const change = { row: 0, column: 0 };
@@ -96,13 +96,14 @@ const attemptMovement = ({ board, player, setPlayer, action, setGameOver }) => {
     change,
     position: player.position,
     shape: player.tetromino.shape,
-    board
+    board,
   });
 
   // Check for collision on the top row for a game over
   const isGameOver = collided && player.position.row === 0;
   if (isGameOver) {
-    setGameOver(isGameOver);
+    setIsOpen(isGameOver);
+    return;
   }
 
   // Update various player attributes
@@ -110,7 +111,7 @@ const attemptMovement = ({ board, player, setPlayer, action, setGameOver }) => {
     ...player,
     collided,
     isFastDropping,
-    position: nextPosition
+    position: nextPosition,
   });
 };
 
@@ -120,7 +121,7 @@ export const playerController = ({
   board,
   player,
   setPlayer,
-  setGameOver
+  setIsOpen,
 }) => {
   // Do nothing if no player action has been performed
   if (!action) {
@@ -131,6 +132,6 @@ export const playerController = ({
   if (action === Action.Rotate) {
     attemptRotation({ board, player, setPlayer });
   } else {
-    attemptMovement({ board, player, setPlayer, action, setGameOver });
+    attemptMovement({ board, player, setPlayer, action, setIsOpen });
   }
 };

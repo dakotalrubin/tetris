@@ -1,0 +1,4 @@
+/* Add '@tailwind' directives for each of Tailwind's layers to main CSS file */
+@tailwind base;
+@tailwins components;
+@tailwind utilities;
