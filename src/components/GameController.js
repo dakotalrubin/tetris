@@ -1,20 +1,12 @@
 import "../styles/GameController.css";
 
-import { useState, useEffect } from "react";
-
 import ModalDialog from "./ModalDialog.js";
 
 import { Action, actionForKey, actionIsDrop } from "../utils/Input.js";
 import { playerController } from "../utils/PlayerController.js";
-import { hasCollision } from "../utils/Board.js";
 
 import { useInterval } from "../hooks/useInterval.js";
 import { useDropTime } from "../hooks/useDropTime.js";
-
-// Delay an event by the given amount of time in ms
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 const GameController = ({
   board,
@@ -22,40 +14,15 @@ const GameController = ({
   player,
   setGameOver,
   setPlayer,
+  isOpen,
+  setIsOpen,
 }) => {
-  // Create variable to track whether ModalDialog box is displayed
-  const [isOpen, setIsOpen] = useState(false);
   // Call useDropTime hook to use state variable and setter functions
   const [dropTime, pauseDropTime, resumeDropTime, updateDropTime] = useDropTime(
     {
       gameStats,
     },
   );
-
-  // Pause the game and give the player a game over
-  async function delayedGameOver() {
-    // Take away player control and pause the game
-    document.querySelector(".GameController").blur();
-    pauseDropTime();
-    await sleep(800);
-
-    // Allow the rendering of a ModalDialog box for a game over
-    setIsOpen(true);
-  }
-
-  // Check if a newly-spawned tetromino instantly collides with anything
-  useEffect(() => {
-    let collided = hasCollision({
-      board,
-      position: player.position,
-      shape: player.tetromino.shape,
-    });
-
-    // Pause the game for a moment, then open a ModalDialog box for a game over
-    if (collided) {
-      delayedGameOver();
-    }
-  });
 
   // Change the tetromino drop time depending on the game's level in gameStats
   // Perform a "slow drop" action at every "dropTime" unit of time

@@ -5,13 +5,13 @@ import { movePlayer } from "./PlayerController.js";
 // Build game board using size info (rows and columns)
 export const buildBoard = ({ rows, columns }) => {
   const builtRows = Array.from({ length: rows }, () =>
-    Array.from({ length: columns }, () => ({ ...defaultCell }))
+    Array.from({ length: columns }, () => ({ ...defaultCell })),
   );
 
   // Return board and size info (rows and columns)
   return {
     rows: builtRows,
-    size: { rows, columns }
+    size: { rows, columns },
   };
 };
 
@@ -56,14 +56,14 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   // keep the cell's value in the updated game board
   // Else if the cell is unoccupied, clear the cell
   let rows = board.rows.map((row) =>
-    row.map((cell) => (cell.occupied ? cell : { ...defaultCell }))
+    row.map((cell) => (cell.occupied ? cell : { ...defaultCell })),
   );
 
   // Store final tetromino drop position
   const dropPosition = findDropPosition({
     board,
     position,
-    shape: tetromino.shape
+    shape: tetromino.shape,
   });
 
   // Place ghost tetromino where fast-drop collision would occur
@@ -77,7 +77,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
     isOccupied: player.isFastDropping,
     position: dropPosition,
     rows,
-    shape: tetromino.shape
+    shape: tetromino.shape,
   });
 
   // Update the rows in the game board to show this tetromino if the player
@@ -89,7 +89,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
       isOccupied: player.collided,
       position,
       rows,
-      shape: tetromino.shape
+      shape: tetromino.shape,
     });
   }
 
@@ -131,7 +131,7 @@ export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
   // Return the updated game board
   return {
     rows,
-    size: { ...board.size }
+    size: { ...board.size },
   };
 };
 

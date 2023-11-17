@@ -1,5 +1,7 @@
 import "../styles/Tetris.css";
 
+import { useState } from "react";
+
 import Controls from "./Controls.js";
 import Board from "./Board.js";
 import GameStats from "./GameStats.js";
@@ -14,12 +16,14 @@ export default function Tetris({ rows, columns, setGameOver }) {
   // Initialize state variables and setters
   const [gameStats, addLinesCleared] = useGameStats();
   const [player, setPlayer, resetPlayer] = usePlayer();
+  const [isOpen, setIsOpen] = useState(false);
   const [board, setBoard] = useBoard({
     rows,
     columns,
     player,
     resetPlayer,
     addLinesCleared,
+    setIsOpen,
   });
 
   // Return a Controls component showing relevant inputs to the player
@@ -39,6 +43,8 @@ export default function Tetris({ rows, columns, setGameOver }) {
         player={player}
         setGameOver={setGameOver}
         setPlayer={setPlayer}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
       />
     </div>
   );

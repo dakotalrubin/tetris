@@ -42,12 +42,12 @@ const ModalDialog = ({ isOpen, setIsOpen, setGameOver, finalScore }) => {
                     Game over!
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      <div>
+                    <div className="text-sm text-gray-500">
+                      <p>
                         Your score is: <b>{finalScore}</b>
-                      </div>
-                      <div>Click "OK" to return to the title screen.</div>
-                    </p>
+                      </p>
+                      <p>Click "OK" to return to the title screen.</p>
+                    </div>
                   </div>
 
                   <div className="mt-4">
