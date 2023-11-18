@@ -7,57 +7,57 @@ export const TETROMINOES = {
       [0, 1, 0, 0],
       [0, 1, 0, 0],
       [0, 1, 0, 0],
-      [0, 1, 0, 0]
+      [0, 1, 0, 0],
     ],
-    className: `${className} ${className}_i`
+    className: `${className} ${className}_i`,
   },
   J: {
     shape: [
       [0, 1, 0],
       [0, 1, 0],
-      [1, 1, 0]
+      [1, 1, 0],
     ],
-    className: `${className} ${className}_j`
+    className: `${className} ${className}_j`,
   },
   L: {
     shape: [
       [0, 1, 0],
       [0, 1, 0],
-      [0, 1, 1]
+      [0, 1, 1],
     ],
-    className: `${className} ${className}_l`
+    className: `${className} ${className}_l`,
   },
   O: {
     shape: [
       [1, 1],
-      [1, 1]
+      [1, 1],
     ],
-    className: `${className} ${className}_o`
+    className: `${className} ${className}_o`,
   },
   S: {
     shape: [
       [0, 1, 1],
       [1, 1, 0],
-      [0, 0, 0]
+      [0, 0, 0],
     ],
-    className: `${className} ${className}_s`
+    className: `${className} ${className}_s`,
   },
   T: {
     shape: [
       [1, 1, 1],
       [0, 1, 0],
-      [0, 0, 0]
+      [0, 0, 0],
     ],
-    className: `${className} ${className}_t`
+    className: `${className} ${className}_t`,
   },
   Z: {
     shape: [
       [1, 1, 0],
       [0, 1, 1],
-      [0, 0, 0]
+      [0, 0, 0],
     ],
-    className: `${className} ${className}_z`
-  }
+    className: `${className} ${className}_z`,
+  },
 };
 
 // Transfer a tetromino from the preview board to the game board
@@ -66,20 +66,73 @@ export const transferToBoard = ({
   isOccupied,
   position,
   rows,
-  shape
+  shape,
 }) => {
-  // Iterate through each cell in each row
+  // Track when and where collision will occur when transferring a tetromino to the game board
+  let futureCollision = false;
+  let collisionRow = null;
+
+  // Check each cell in each row of the preview board
   shape.forEach((row, y) => {
     row.forEach((cell, x) => {
-      // Track each occupied cell's position in the preview board
+      // Check each occupied cell's position in the preview board
+      // for potential collision in the game board
       if (cell) {
-        const occupied = isOccupied;
         const new_y = y + position.row;
         const new_x = x + position.column;
-        rows[new_y][new_x] = { occupied, className };
+
+        if (rows[new_y][new_x].occupied) {
+          futureCollision = true;
+          if (collisionRow === null) {
+            collisionRow = new_y;
+          }
+        }
       }
     });
   });
+
+  // Shift the entire tetromino up to the first unoccupied row
+  if (futureCollision) {
+    // Find the first unoccupied row
+    let spawnRow = collisionRow - 1;
+
+    // Iterate through each cell in each row of the preview board
+    shape
+      .slice()
+      .reverse()
+      .forEach((row, y) => {
+        row.forEach((cell, x) => {
+          // Track each occupied cell's position in the preview board
+          // for placement in the game board
+          // Set the spawn row upper bound as row 0
+          if (cell && spawnRow >= 0) {
+            const occupied = isOccupied;
+            const new_y = spawnRow;
+            const new_x = x + position.column;
+            rows[new_y][new_x] = { occupied, className };
+          }
+        });
+        // Ignore empty rows in the preview board
+        // Set the new spawn row as one row higher than the current spawn point
+        if (y !== 0) {
+          spawnRow--;
+        }
+      });
+  } else {
+    // Iterate through each cell in each row of the preview board
+    shape.forEach((row, y) => {
+      row.forEach((cell, x) => {
+        // Track each occupied cell's position in the preview board
+        // for placement in the game board
+        if (cell) {
+          const occupied = isOccupied;
+          const new_y = y + position.row;
+          const new_x = x + position.column;
+          rows[new_y][new_x] = { occupied, className };
+        }
+      });
+    });
+  }
 
   // Return all transferred cell information from preview board to game board
   return rows;
@@ -97,7 +150,7 @@ export const randomTetromino = () => {
 export const rotate = ({ piece, direction }) => {
   // Transpose rows and columns
   const newPiece = piece.map((_, index) =>
-    piece.map((column) => column[index])
+    piece.map((column) => column[index]),
   );
 
   // Reverse rows to get a rotated matrix

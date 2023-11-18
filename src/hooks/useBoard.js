@@ -15,7 +15,7 @@ export const useBoard = ({
   // Initialize state variable and setter
   const [board, setBoard] = useState(buildBoard({ rows, columns }));
 
-  // Update game board any time player, resetPlayer or addLinesCleared changes
+  // Update the game board any time player, resetPlayer or addLinesCleared changes
   useEffect(() => {
     // Check if a spawning tetromino instantly collides with anything
     let collided = hasCollision({
@@ -24,10 +24,7 @@ export const useBoard = ({
       shape: player.tetromino.shape,
     });
 
-    // Only render the rows of the spawning tetromino that would fit on-screen
-    if (collided) {
-    }
-
+    // Update the game board
     setBoard((previousBoard) =>
       nextBoard({
         board: previousBoard,
@@ -37,7 +34,7 @@ export const useBoard = ({
       }),
     );
 
-    // Render a ModalDialog box for a game over
+    // Allow a ModalDialog box to be rendered for a game over
     if (collided) {
       setIsOpen(true);
     }
