@@ -99,8 +99,11 @@ const attemptMovement = ({ board, player, setPlayer, action, setIsOpen }) => {
     board,
   });
 
-  // Check for collision on the top row for a game over
-  const isGameOver = collided && player.position.row === 0;
+  // Check for collision on the top row at tetromino spawn locations for a game over
+  const isGameOver =
+    collided &&
+    player.position.row === 0 &&
+    player.position.column === (4 || 5 || 6);
   if (isGameOver) {
     setIsOpen(isGameOver);
     return;

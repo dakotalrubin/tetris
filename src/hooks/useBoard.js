@@ -15,7 +15,7 @@ export const useBoard = ({
   // Initialize state variable and setter
   const [board, setBoard] = useState(buildBoard({ rows, columns }));
 
-  // Update the game board any time player, resetPlayer or addLinesCleared changes
+  // Update the game board any time player, resetPlayer or addLinesCleared change
   useEffect(() => {
     // Check if a spawning tetromino instantly collides with anything
     let collided = hasCollision({
