@@ -8,7 +8,7 @@ A Tetris clone written using JavaScript and React
 
 ## Running the Game
 
-Click on the GitHub Pages link to play!
+Click on the github-pages link in the sidebar to play!
 
 ## Controls
 

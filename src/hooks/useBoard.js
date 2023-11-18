@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { buildBoard, nextBoard } from "../utils/Board.js";
 
+import { buildBoard, nextBoard } from "../utils/Board.js";
 import { hasCollision } from "../utils/Board.js";
 
 // Custom useBoard hook
